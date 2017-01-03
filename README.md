@@ -47,9 +47,55 @@ vagrant ssh broker1 -c "jps"
 > 16134 Kafka
 ```
 
-Note: lines that start with ">" are shell output. 
+*Note: lines that start with ">" are shell output.*
 
 We can see that each of the nodes is running a ZooKeeper server and a Kafka broker. 
+
+Kafka basics
+------------
+
+Create a topic called "t1" with replication factor 2 and 3 number of
+partitions. You can use the custom scripts provided by Kafka or use
+the script ([create_topic.sh](scripts/create_topic.sh)) provided here.
+
+```bash
+vagrant ssh spark1
+/vagrant/scripts/create_topic.sh t1 2 3
+```
+
+Verify that the topic is created
+
+```bash
+# Assumes you are in any of the 4VMs
+/vagrant/scripts/list_topics.sh
+> __consumer_offsets
+> t1
+```
+
+Add events to the topic ([producer.sh](scripts/producer.sh))
+
+```bash
+/vagrant/scripts/producer.sh t1
+a
+b
+c
+# ctrl-C to exit
+```
+
+Read the events back ([consumer.sh](scripts/consumer.sh))
+
+```bash
+/vagrant/scripts/consumer.sh t1
+a
+c
+b
+# ctrl-C to exit
+Processed a total of 3 messages
+```
+
+Note that events for the entire topic may come out-of-order. 
+Kafka preserves order only within a single partition.
+
 
 
 
