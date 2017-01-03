@@ -1,18 +1,20 @@
 #!/usr/bin/env bash
 
+nodes=3
+
 # First stop kafka. The order is important. Kafka needs zk to be up in order to stop gracefully.
-for i in $(seq 1 3); do
-   vagrant ssh broker$i -c "/vagrant/scripts/stop-kafka.sh"
+for i in $(seq 1 $nodes); do
+   vagrant ssh broker$i -c "/vagrant/scripts/stop_kafka.sh"
 done
 
 # Letting kafka stop
 sleep 8
 
-for i in $(seq 1 3); do
-   vagrant ssh broker$i -c "/vagrant/scripts/stop-zk.sh"
+for i in $(seq 1 $nodes); do
+   vagrant ssh broker$i -c "/vagrant/scripts/stop_zk.sh"
 done
 
-for i in $(seq 1 3); do
+for i in $(seq 1 $nodes); do
    res_zk=$(vagrant ssh broker$i -c "jps" | grep -i quorumpeermain)
    res_kafka=$(vagrant ssh broker$i -c "jps" | grep -i kafka)
 
