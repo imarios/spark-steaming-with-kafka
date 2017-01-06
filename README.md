@@ -146,13 +146,13 @@ Connect to the Spark VM
 vagrant ssh spark1
 ```
 
-Start Spark shell with the proper kafka dependecies. The shell we pre-load the commands from [streaming.scala](scripts/streaming.scala). 
+Start Spark shell with the proper kafka dependecies. On start-up the shell pre-loads the commands from [streaming.scala](scripts/streaming.scala). 
 
 ```bash
 /vagrant/scripts/run_spark_streaming.sh t1
 ```
 
-When the shell stops loading, go ahead and implement the most basic consumer (count events in each 10 second interval)
+When the shell stops loading, go ahead and implement the most basic consumer that counts events in each 10 seconds interval. 
 
 ```
 Welcome to
