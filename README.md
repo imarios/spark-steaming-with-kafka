@@ -99,19 +99,86 @@ Kafka preserves order only within a single partition.
 Check the offsets of each partition ([show_offsets.sh](scripts/show_offsets.sh))
 
 ```bash
-/vagrant/scripts/show_offsets.sh t0
-> t0:2:1
-> t0:1:1
-> t0:0:1
+/vagrant/scripts/show_offsets.sh t1
+> t1:2:1
+> t1:1:1
+> t1:0:1
 ```
 
 Each partition has one event. Kafka was able to evenly distribute the three events 
-over the three partitions of the "t0" topic.
+over the three partitions of the "t1" topic.
 
 
+Spark streaming consumer
+------------
 
+Connect to the Spark VM
 
+```bash
+vagrant ssh spark1
+```
 
+Start Spark shell with the proper kafka dependecies
+
+```bash
+/vagrant/scripts/run_spark_streaming.sh t1
+```
+
+When the shell stops loading, implement the most basic consumer (count events in each 10 second interval)
+
+```bash
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /___/ .__/\_,_/_/ /_/\_\   version 2.1.0
+      /_/
+
+Using Scala version 2.11.8 (OpenJDK 64-Bit Server VM, Java 1.8.0_111)
+Type in expressions to have them evaluated.
+Type :help for more information.
+
+scala> myStream.count.print
+
+scala> ssc.start
+```
+
+From another shell connect to any of the three broker VMs.
+
+Connect to the Spark VM
+
+```bash
+vagrant ssh broker2
+```
+
+Run the [auto_producer.sh](scripts/auto_producer.sh) with a rate of 4k characters per second (each event has 2 charactes which produces a 2k events per second stream).
+
+```bash
+/vagrant/scripts/auto_producer.sh t1 4k
+```
+
+Going back to your Spark streaming shell you should see something similar to this
+
+```bash
+-------------------------------------------
+Time: 1483680230000 ms
+-------------------------------------------
+21060
+
+-------------------------------------------
+Time: 1483680240000 ms
+-------------------------------------------
+19656
+
+-------------------------------------------
+Time: 1483680250000 ms
+-------------------------------------------
+21060
+...
+```
+
+You can enjoy the spark sreaming UI at http://localhost:4041/streaming/. 
+Feel free to kill the Spark shell and the producer when you get board of this :). 
 
 
 
