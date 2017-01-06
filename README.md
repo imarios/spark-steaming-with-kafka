@@ -146,13 +146,13 @@ Connect to the Spark VM
 vagrant ssh spark1
 ```
 
-Start Spark shell with the proper kafka dependecies
+Start Spark shell with the proper kafka dependecies. The shell we pre-load the commands from [streaming.scala](scripts/streaming.scala). 
 
 ```bash
 /vagrant/scripts/run_spark_streaming.sh t1
 ```
 
-When the shell stops loading, implement the most basic consumer (count events in each 10 second interval)
+When the shell stops loading, go ahead and implement the most basic consumer (count events in each 10 second interval)
 
 ```
 Welcome to
@@ -183,7 +183,7 @@ Run the [auto_producer.sh](scripts/auto_producer.sh) with a rate of 4k character
 /vagrant/scripts/auto_producer.sh t1 4k
 ```
 
-Going back to your Spark streaming shell you should see something similar to this
+Going back to your Spark Streaming shell you should see something similar to this
 
 ```bash
 -------------------------------------------
@@ -203,7 +203,7 @@ Time: 1483680250000 ms
 ...
 ```
 
-You can enjoy the spark sreaming UI at http://localhost:4041/streaming/. 
+You can enjoy the spark sreaming UI at **http://localhost:4041/streaming/**. 
 Feel free to kill the Spark shell and the producer when you get board of this :). 
 
 
