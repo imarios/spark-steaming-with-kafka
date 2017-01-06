@@ -51,6 +51,34 @@ vagrant ssh broker1 -c "jps"
 
 We can see that each of the nodes is running a ZooKeeper server and a Kafka broker. 
 
+#### Teardown 
+
+To stop both Kafka and ZooKeeper
+
+```bash
+./stop-all-in-cluster.sh
+```
+
+To suspend the VirtualBox VMs (so you can resume later)
+
+```bash
+vagrant suspend
+```
+
+To resume
+
+```bash
+vagrant resume
+#or
+vagrant up
+```
+
+To delete the VMs and all their files
+
+```bash
+vagrant destroy
+```
+
 Kafka basics
 ------------
 
