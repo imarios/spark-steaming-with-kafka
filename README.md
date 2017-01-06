@@ -126,7 +126,7 @@ Start Spark shell with the proper kafka dependecies
 
 When the shell stops loading, implement the most basic consumer (count events in each 10 second interval)
 
-```bash
+```
 Welcome to
       ____              __
      / __/__  ___ _____/ /__
@@ -143,9 +143,7 @@ scala> myStream.count.print
 scala> ssc.start
 ```
 
-From another shell connect to any of the three broker VMs.
-
-Connect to the Spark VM
+From a seperate terminal connect to any of the three broker VMs.
 
 ```bash
 vagrant ssh broker2
@@ -179,6 +177,18 @@ Time: 1483680250000 ms
 
 You can enjoy the spark sreaming UI at http://localhost:4041/streaming/. 
 Feel free to kill the Spark shell and the producer when you get board of this :). 
+
+
+Next steps
+------------
+
+Your testbed is now ready for you to experiment. Here are some suggestions:
+
+* Try more complex Spark streaming statements. Search in the [docs](http://spark.apache.org/docs/latest/streaming-programming-guide.html) for inspiration. 
+* Try starting `auto_producer.sh` from all three brokers for the same topic. Raise the rates up and see how Spark handles the increased rate. 
+* While at least one producer is running, try shutting down one of the other two broker VMs. Observe how Spark Streaming and how Kafka handle the change.
+
+
 
 
 
