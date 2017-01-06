@@ -204,7 +204,7 @@ Time: 1483680250000 ms
 ```
 
 You can enjoy the spark sreaming UI at **http://localhost:4041/streaming/**. 
-Feel free to kill the Spark shell and the producer when you get board of this :). 
+Feel free to kill the Spark shell and the producer when you get bored of this :). 
 
 
 Next steps
