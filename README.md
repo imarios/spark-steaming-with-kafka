@@ -86,15 +86,30 @@ Read the events back ([consumer.sh](scripts/consumer.sh))
 
 ```bash
 /vagrant/scripts/consumer.sh t1
-a
-c
-b
+> a
+> c
+> b
 # ctrl-C to exit
 Processed a total of 3 messages
 ```
 
 Note that events for the entire topic may come out-of-order. 
 Kafka preserves order only within a single partition.
+
+Check the offsets of each partition ([show_offsets.sh](scripts/show_offsets.sh))
+
+```bash
+/vagrant/scripts/show_offsets.sh t0
+> t0:2:1
+> t0:1:1
+> t0:0:1
+```
+
+Each partition has one event. Kafka was able to evenly distribute the three events 
+over the three partitions of the "t0" topic.
+
+
+
 
 
 
