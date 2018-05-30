@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 spark_version="spark-2.2.0-bin-hadoop2.7"
-kafka_version="kafka_2.12-0.11.0.2"
+kafka_version="kafka_2.11-0.11.0.2"
 
 node_ip[1]=10.30.3.41
 node_ip[2]=10.30.3.42
