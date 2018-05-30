@@ -2,10 +2,11 @@
 # vi: set ft=ruby :
 
 Vagrant.configure(2) do |config|
-  config.vm.box = "ubuntu/Trusty64"
+  config.vm.box = "bento/ubuntu-16.04"
   config.vm.provision "shell", path: "scripts/setup.sh"
   config.ssh.forward_agent = true
-#  config.ssh.insert_key = false
+#  If you can't log into your brokers/sparks as vagrant, comment out the following line.
+  config.ssh.insert_key = false
 
   (1..3).each do |i|
     config.vm.define "broker#{i}" do |s|

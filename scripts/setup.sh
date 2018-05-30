@@ -5,7 +5,7 @@ source "/vagrant/scripts/common.sh"
 
 echo "Installing Java 8"
 apt-get update
-apt-get -y install openjdk-7-jdk > /dev/null 2>&1
+apt-get -y install openjdk-8-jdk-headless > /dev/null 2>&1
 apt-get -y install pv 
 
 spark_tar="$spark_version.tgz"
