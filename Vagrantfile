@@ -2,10 +2,10 @@
 # vi: set ft=ruby :
 
 Vagrant.configure(2) do |config|
-  config.vm.box = "bento/ubuntu-16.04"
+  config.vm.box = "ubuntu/Trusty64"
   config.vm.provision "shell", path: "scripts/setup.sh"
   config.ssh.forward_agent = true
-  config.ssh.insert_key = false
+#  config.ssh.insert_key = false
 
   (1..3).each do |i|
     config.vm.define "broker#{i}" do |s|
