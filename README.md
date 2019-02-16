@@ -2,8 +2,8 @@
 
 **Goal:** Uses [Vagrant](https://www.vagrantup.com) to create a 4 Virtual Machine (VM) cluster (3 running Kafka 1 running Spark) to expriment with Spark Streaming and Kafka.
 
-- Spark Streaming v2.1.0
-- Kafka v0.10.1
+- Spark Streaming v2.2.0
+- Kafka v1.1.0
 
 Requirements
 ------------
